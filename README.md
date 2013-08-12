@@ -50,8 +50,8 @@ I created a simple function used to construct these URLs, optionally
 restricting them to a given domain:
 
 ```javascript
-/** Opens the "Feeling Lucky" Google result in a new tab, given a
-	given a particular query (and optional domain to target) */
+/** Constructs a URL which will query google redirecting to the top
+    query result (optionally restricted to a particular domain) */
 var getLucky = function (query, site) {
 	site = site ? ['site:', site, '+'].join('') : '';
 	return ['https://google.com/search?btnI&q=', site, query].join('');
