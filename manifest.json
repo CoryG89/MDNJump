@@ -1,0 +1,20 @@
+{
+  "manifest_version": 2,
+
+  "name": "MDNJump",
+  "version": "0.1.0",
+
+  "description": "Adds context menus to search common developer references.",
+
+  "icons": { 
+    "16" : "ico/16.png",
+    "48" : "ico/48.png",
+    "128" : "ico/128.png"
+  },
+
+  "permissions": ["contextMenus", "tabs"],
+
+  "background": {
+    "scripts": ["index.js"]
+  }
+}
