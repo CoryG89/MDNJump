@@ -2,9 +2,10 @@
   "manifest_version": 2,
 
   "name": "MDNJump",
-  "version": "0.1.0",
+  "version": "0.1.2",
 
-  "description": "Adds context menus to search common developer references.",
+  "description": 
+    "Quickest way to look something up on MDN ( Mozilla Developer Network ).",
 
   "icons": { 
     "16" : "ico/16.png",
@@ -13,6 +14,10 @@
   },
 
   "permissions": ["contextMenus", "tabs"],
+  
+  "omnibox": {
+    "keyword": "mdn-"
+  },
 
   "background": {
     "scripts": ["index.js"]

@@ -1,28 +1,33 @@
+/** Add a search menu, restricted to MDN */
+var mdnUrl = 'https://developer.mozilla.org';
 
-/** Opens up a new tab with a given URL */
-var openTab = function (url) {
-    chrome.tabs.create({url: url});
-};
+/** Google query URL with btnI key which activates I'm Feeling Lucky */
+var googleUrl = 'https://google.com/search?btnI&q=';
 
-/** Opens the "Feeling Lucky" Google result in a new tab, given a
-    given a particular query (and optional domain to target) */
-var getLucky = function (query, site) {
+/** Returns a Google query URL using I'm Feeling Lucky given an unformatted
+    query and optional domain string to restict the search to */
+function getLucky (query, site) {
     site = site ? ['site:', site, '+'].join('') : '';
-    return ['https://google.com/search?btnI&q=', site, query].join('');
-};
+    return [googleUrl, site, query].join('');
+}
 
-/** Creates a menu item to open the top search result on a given site for
-    the text selection on the page */
-var searchMenu = function (title, site) {
-    return chrome.contextMenus.create({
-        title: title,
-        contexts: ['selection'],
-        onclick: function (evt) {
-            var targetQuery = evt.selectionText;
-            var luckyURL = getLucky(targetQuery, site);
-            openTab(luckyURL); 
-        }
-    });
-};
+/** Creates a new item in the context menu to open the top search result on a
+    given site for the text selection on the page */
+chrome.contextMenus.create({
+    title: 'MDNJump',
+    contexts: ['selection'],
+    onclick: function (evt) {
+        var query = evt.selectionText;
+        var luckyUrl = getLucky(query, mdnUrl);
+        chrome.tabs.create({ url: luckyUrl });
+    }
+});
 
-var menu = searchMenu('MDNJump', 'developer.mozilla.org');
+/** Add basic omnibox functionality */
+chrome.omnibox.setDefaultSuggestion({
+    description: "Jump top MDN page for query: %s"
+});
+chrome.omnibox.onInputEntered.addListener(function (query) {
+    var luckyUrl = getLucky(query, mdnUrl);
+    chrome.tabs.update({ url: luckyUrl });
+});
