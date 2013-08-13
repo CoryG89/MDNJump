@@ -3,9 +3,9 @@ MDNJump
 
 MDNJump is a simple extension for Google Chrome which adds a context menu for
 text selections allowing quick reference lookups on the fly. MDNJump also adds
-an omnibox keyword `mdn-` which you can use in the address bar. MDN is 
-generally my favorite reference for front end development so I created this
-extension so I could more quicky search it's documentation.
+an Omnibox keyword `mdn-` which you can use in Chrome's address bar. MDN is 
+generally my favorite reference for front-end development. I created this
+extension so I could more quickly search it's documentation.
 
 Usage
 ------
