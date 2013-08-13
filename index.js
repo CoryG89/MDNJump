@@ -25,7 +25,7 @@ chrome.contextMenus.create({
 
 /** Add basic omnibox functionality */
 chrome.omnibox.setDefaultSuggestion({
-    description: "Jump top MDN page for query: %s"
+    description: 'Press ENTER to jump to the top MDN page for: %s'
 });
 chrome.omnibox.onInputEntered.addListener(function (query) {
     var luckyUrl = getLucky(query, mdnUrl);
