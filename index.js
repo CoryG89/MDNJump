@@ -39,3 +39,14 @@ chrome.omnibox.setDefaultSuggestion({
 chrome.omnibox.onInputEntered.addListener(function (query) {
     open_url(query);
 });
+
+/** Open the url with the selected text as query search term
+    when the browser action icon is clicked  */
+chrome.browserAction.onClicked.addListener(function(tab){
+    console.log("Browser Action Clicked")
+    chrome.tabs.executeScript( {
+        code: "window.getSelection().toString();"
+        }, function(selection) {
+            open_url(selection[0]);
+        });
+});
