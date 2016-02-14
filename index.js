@@ -14,10 +14,14 @@ function getLucky (query, site) {
 /** Creates a new item in the context menu to open the top search result on a
     given site for the text selection on the page */
 chrome.contextMenus.create({
-    title: 'MDNJump',
-    contexts: ['selection'],
-    onclick: function (evt) {
-        var query = evt.selectionText;
+    id: 'mdnjump',
+    title: 'MDNJump %s',
+    contexts: ['selection']
+});
+
+chrome.contextMenus.onClicked.addListener(function(info, tab) {
+    if (info.menuItemId == "mdnjump") {
+        var query = info.selectionText;
         var luckyUrl = getLucky(query, mdnUrl);
         chrome.tabs.create({ url: luckyUrl });
     }
