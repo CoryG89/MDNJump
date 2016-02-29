@@ -21,7 +21,7 @@ function open_url(query){
     given site for the text selection on the page */
 chrome.contextMenus.create({
     id: 'mdnjump',
-    title: 'MDNJump %s',
+    title: 'Search MDNJump for "%s"',
     contexts: ['selection']
 });
 
