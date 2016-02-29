@@ -18,7 +18,7 @@
 	  "default_title": "MDNJump"
   },
 
-  "permissions": ["contextMenus", "tabs", "activeTab"],
+  "permissions": ["contextMenus", "activeTab"],
   
   "omnibox": {
     "keyword": "mdn-"
